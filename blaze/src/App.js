@@ -44,9 +44,6 @@ const App = () => {
 });
 
 await channel.create();
-
-
-
     
       return () => {
         newClient.off("connection.changed", handleConnectionChange);
