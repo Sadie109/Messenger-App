@@ -39,19 +39,24 @@ const App = () => {
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZGF2ZS1tYXR0aGV3cyJ9.-d0UZ9n1gwsiKUSVzZ1x5Eds8sFZziOXHsBTvbcjhgg"
       );
 
-      const channel = client.channel('gaming', 'blaze', {
-        name: 'blaze',
-      });
-      await channel.create();
+     const channel = client.channel('messaging', 'Branch', {
+    name: 'Branch',
+});
+
+await channel.create();
 
 
+
+    
       return () => {
         newClient.off("connection.changed", handleConnectionChange);
         newClient.disconnectUser().then(() => console.log("connection closed"));
       };
-     
     };
     setupClient();
+    setChannel();
+
+    
   }, []);
 
   if (!client) return null;
