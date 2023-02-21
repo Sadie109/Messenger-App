@@ -3,15 +3,11 @@ import { StreamChat } from "stream-chat";
 import {
   Chat,
   Channel,
-  ChannelHeader,
   ChannelList,
-  MessageList,
-  MessageInput,
-  Thread,
-  Window,
 } from "stream-chat-react";
 import "@stream-io/stream-chat-css/dist/css/index.css";
-
+import Auth from "./components/Auth.js";
+import MessagingContainer from "./components/MessagingContainer.js";
 
 const filters = { type: "messaging" };
 const options = { state: true, presence: true, limit: 10 };
@@ -20,6 +16,8 @@ const sort = { last_message_at: -1 };
 const App = () => {
   const [client, setClient] = useState(false);
   const [channel, setChannel] = useState(null);
+
+  const authToken = true;
 
   useEffect(() => {
     const setupClient = async () => {
@@ -58,17 +56,17 @@ const App = () => {
   if (!client) return null;
 
   return (
-    <Chat client={client} darkMode = {true}>
-      <ChannelList filters={filters} sort={sort} options={options} />
-      <Channel channel={channel}>
-        <Window>
-          <ChannelHeader />
-          <MessageList />
-          <MessageInput />
-        </Window>
-        <Thread />
-      </Channel>
-    </Chat>
+    <>
+      {!authToken && <Auth />}
+      {authToken && (
+        <Chat client={client} darkMode={true}>
+          <ChannelList filters={filters} sort={sort} options={options} />
+          <Channel channel={channel}>
+          <MessagingContainer/>
+          </Channel>
+        </Chat>
+      )}
+    </>
   );
 };
 
