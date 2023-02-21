@@ -12,6 +12,7 @@ import {
 } from "stream-chat-react";
 import "@stream-io/stream-chat-css/dist/css/index.css";
 
+
 const filters = { type: "messaging" };
 const options = { state: true, presence: true, limit: 10 };
 const sort = { last_message_at: -1 };
@@ -39,12 +40,12 @@ const App = () => {
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZGF2ZS1tYXR0aGV3cyJ9.-d0UZ9n1gwsiKUSVzZ1x5Eds8sFZziOXHsBTvbcjhgg"
       );
 
-     const channel = client.channel('messaging', 'Branch', {
-    name: 'Branch',
-});
+      const channel = client.channel("messaging", "Branch", {
+        name: "Branch",
+      });
 
-await channel.create();
-    
+      await channel.create();
+
       return () => {
         newClient.off("connection.changed", handleConnectionChange);
         newClient.disconnectUser().then(() => console.log("connection closed"));
@@ -52,14 +53,12 @@ await channel.create();
     };
     setupClient();
     setChannel();
-
-    
   }, []);
 
   if (!client) return null;
 
   return (
-    <Chat client={client}>
+    <Chat client={client} darkMode = {true}>
       <ChannelList filters={filters} sort={sort} options={options} />
       <Channel channel={channel}>
         <Window>
