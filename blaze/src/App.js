@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { StreamChat } from "stream-chat";
-import {
-  Chat,
-  Channel,
-  ChannelList,
-} from "stream-chat-react";
+import { Chat, Channel, ChannelList } from "stream-chat-react";
 import "@stream-io/stream-chat-css/dist/css/index.css";
 import Auth from "./components/Auth.js";
 import MessagingContainer from "./components/MessagingContainer.js";
+import Video from "./components/Video.js"
 
 const filters = { type: "messaging" };
 const options = { state: true, presence: true, limit: 10 };
@@ -38,7 +35,7 @@ const App = () => {
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZGF2ZS1tYXR0aGV3cyJ9.-d0UZ9n1gwsiKUSVzZ1x5Eds8sFZziOXHsBTvbcjhgg"
       );
 
-      const channel = client.channel("messaging", "Branch", {
+      const channel = client.channel("gaming", "Branch", {
         name: "Branch",
       });
 
@@ -62,7 +59,8 @@ const App = () => {
         <Chat client={client} darkMode={true}>
           <ChannelList filters={filters} sort={sort} options={options} />
           <Channel channel={channel}>
-          <MessagingContainer/>
+          <Video/>
+            <MessagingContainer />
           </Channel>
         </Chat>
       )}
