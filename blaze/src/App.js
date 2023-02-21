@@ -14,7 +14,7 @@ const App = () => {
   const [client, setClient] = useState(false);
   const [channel, setChannel] = useState(null);
 
-  const authToken = true;
+  const authToken = false;
 
   useEffect(() => {
     const setupClient = async () => {
@@ -54,7 +54,7 @@ const App = () => {
 
   return (
     <>
-      {!authToken && <Auth />}
+      {!authToken && <Auth/>}
       {authToken && (
         <Chat client={client} darkMode={true}>
           <ChannelList filters={filters} sort={sort} options={options} />
