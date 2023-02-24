@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios'
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,12 +11,18 @@ const Auth = () => {
   console.log(username);
   console.log(confirmPassword);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log("submitted")
     if (password !== confirmPassword) {
         setError(true)
         return
     }
+    const response = await axios.post(`http://localhost:8000/signup`, {
+      username,
+      password
+    })
+
+    console.log(response)
   }
 
   return (
