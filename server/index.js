@@ -24,7 +24,7 @@ app.post("/signup", async (req, res) => {
     const client = connect(API_KEY, API_SECRET, APP_ID);
     const token = client.createUserToken(userID)
 
-    res.status(200).json({ username, password, userID, hashedPassword, token})
+    res.status(200).json({ username, userID, hashedPassword, token})
 
     console.log(username, password);
   } catch (error) {
